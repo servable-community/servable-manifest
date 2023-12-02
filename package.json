@@ -4,7 +4,7 @@
   "source": "src/index.js",
   "main": "src/index.js",
   "version": "0.0.0-development",
-  "description": "Servable engine",
+  "description": "Servable manifest is a utility that builds a protocol's manifest and documents it.",
   "author": "Servable Community",
   "license": "ISC",
   "bugs": {
@@ -85,8 +85,6 @@
     "parse": "^3.5.1",
     "parse-comments": "^1.0.0",
     "parse-server": "^5.4.0",
-    "parse-server-s3like-adapter": "^2.0.1",
-    "parse-server-sendgrid-adapter": "^1.0.0",
     "path-sanitizer": "^2.0.0",
     "semver": "*",
     "sharp": "0.30.7",
