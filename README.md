@@ -1,4 +1,4 @@
-# Servable Engine
+# Servable Manifest Tool
 
 > [!WARNING]
 > Servable is still experimental and its api may change in the future.
@@ -11,9 +11,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-Servable engine is the core component of the Servable eco-system.
-It orchestrates the server deployment, the protocols registration and execution and more.
-Servable engine is used by the Servable CLI to generate new projects.
+Servable manifest is a utility that builds a protocol's manifest and documents it.
 
 ## Documentation
 You can find here the complete [servable documentation](https://documentation.servable.app/) with guides and api reference.
