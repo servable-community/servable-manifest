@@ -1,4 +1,4 @@
-import checkFileExists from '../protocol/utils/checkFileExists.js'
+import checkFileExists from './checkFileExists.js'
 import fs from 'fs'
 import _path from 'path'
 import _ from 'underscore'
