@@ -20,7 +20,6 @@ export default async (props) => {
   const md = `/${sanitizePath(`${props.fullPath}.md`)}`
   if (await checkFileExists(md)) {
     documentation = await fs.promises.readFile(md, 'utf8')
-    console.log(documentation)
   }
 
   let moduleImporter = {}
