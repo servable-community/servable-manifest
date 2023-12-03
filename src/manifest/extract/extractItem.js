@@ -5,8 +5,6 @@ const performItem = async (props) => {
   const {
     item,
     reference = {},
-    namedReference = {},
-    treedReference = {},
     parentLeafPath,
     prefix } = props
 

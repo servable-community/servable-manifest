@@ -11,6 +11,10 @@ export const ProtocolEnum = {
         x2: '@2x',
         x3: '@3x'
       },
+      mimeTypes: {
+        SVG: 'image/svg+xml',
+        PNG: 'image/png'
+      },
     },
     Thumbnail: {
       id: 'thumbnail',

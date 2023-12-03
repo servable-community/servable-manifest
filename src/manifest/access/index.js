@@ -8,6 +8,8 @@ export default async (props) => {
   const {
     path,
     extraction,
+    variant,
+    mimeType,
     item,
     type,
     formatData = true
@@ -34,7 +36,21 @@ export default async (props) => {
         if (!result.data.length) {
           break
         }
-        result.data = result.data[0]
+        if (mimeType) {
+          let candidates = result.data.filter(a => a.mimeType === mimeType)
+          result.data = candidates
+        }
+        if (variant) {
+          let candidates = result.data.filter(a => a.variant === variant)
+          if (candidates && candidates.length) {
+            result.data = candidates[0]
+          } else {
+            result.data = null
+          }
+        }
+        else {
+          result.data = result.data[0]
+        }
       } break
     }
   }

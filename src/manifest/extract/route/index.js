@@ -69,13 +69,16 @@ export default async (props) => {
         for (var i = 0; i < mimeTypes.length; i++) {
           const mimeType = mimeTypes[i]
 
-          files = await extractFiles({
+          const _files = await extractFiles({
             mimeType,
             fullPath,
             variants: _variants
           })
-          if (files && files.length) {
-            break
+          if (_files && _files.length) {
+            if (!files) {
+              files = []
+            }
+            files = files.concat(_files)
           }
         }
       } break

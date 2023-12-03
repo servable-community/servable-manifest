@@ -32,6 +32,16 @@ export default async props => {
     payload.push({ p: description })
     payload.push({ hr: "" })
   }
+
+  let icon = await access({
+    item: ProtocolEnum.Assets.Icon,
+    variant: ProtocolEnum.Assets.Icon.variants.x2,
+    mimeType: ProtocolEnum.Assets.Icon.mimeTypes.PNG,
+    extraction,
+    path
+  })
+  console.log('------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------icon', icon)
+
   const chunks = {}
 
   chunks.seed = await buildSeed({ path })
