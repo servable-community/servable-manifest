@@ -16,5 +16,5 @@ export default async props => {
     }
   }
 
-  return { payload, name: 'Schema', id: 'schema' }
+  return { payload, name: 'Schema', id: 'schema', auxiliary: (target && target.data) ? target.data.documentation : null }
 }

@@ -1,4 +1,4 @@
-import { ProtocolEnum, DataTemplateType } from "../../../../manifest/enums.js"
+import { ProtocolEnum } from "../../../../manifest/enums.js"
 import access from '../../../../manifest/access/index.js'
 
 export default async props => {
@@ -16,5 +16,5 @@ export default async props => {
     }
   }
 
-  return { payload, name: 'After init', id: 'afterInit' }
+  return { payload, name: 'After init', id: 'afterInit', auxiliary: (target && target.data) ? target.data.documentation : null }
 }

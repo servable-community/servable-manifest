@@ -3,11 +3,10 @@ import json2md from 'json2md'
 import writeChunk from '../utils/chunk.js'
 import checkFileExists from "../../../utils/checkFileExists.js"
 
-export default async ({ item, path }) => {
+export default async ({ item, path, includeAuxiliary }) => {
   const {
     payload,
     chunks,
-
   } = item
 
   const rootPath = path
@@ -22,5 +21,5 @@ export default async ({ item, path }) => {
   const text = json2md(payload)
   await fse.outputFile(indexPath, text)
 
-  await Promise.all(Object.keys(chunks).map(async chunk => writeChunk({ chunk: chunks[chunk], path: chunksRootPath })))
+  await Promise.all(Object.keys(chunks).map(async chunk => writeChunk({ chunk: chunks[chunk], path: chunksRootPath, includeAuxiliary })))
 }

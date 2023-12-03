@@ -5,11 +5,11 @@ import writeChunk from '../utils/chunk.js'
 import checkFileExists from "../../../utils/checkFileExists.js"
 import writeClass from '../class/index.js'
 
-export default async ({ item, path }) => {
+export default async ({ item, path, includeAuxiliary }) => {
   const {
     payload,
     chunks,
-    classes
+    classes,
   } = item
 
   const rootPath = sanitizePath(`${path}/documentation/generated`)
@@ -23,7 +23,7 @@ export default async ({ item, path }) => {
   const text = json2md(payload)
   await fse.outputFile(indexPath, text)
 
-  await Promise.all(Object.keys(chunks).map(async chunk => writeChunk({ chunk: chunks[chunk], path: chunksRootPath })))
+  await Promise.all(Object.keys(chunks).map(async chunk => writeChunk({ chunk: chunks[chunk], path: chunksRootPath, includeAuxiliary })))
 
   if (classes && classes.length) {
 
@@ -34,7 +34,8 @@ export default async ({ item, path }) => {
 
       return writeClass({
         item: _item,
-        path: `/${rootPath}/classes/${_item.id}`
+        path: `/${rootPath}/classes/${_item.id}`,
+        includeAuxiliary
       })
     }))
   }

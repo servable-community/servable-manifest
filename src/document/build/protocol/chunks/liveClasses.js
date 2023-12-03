@@ -16,5 +16,5 @@ export default async props => {
     }
   }
 
-  return { payload, name: 'Live Classes', id: 'liveClasses' }
+  return { payload, name: 'Live Classes', id: 'liveClasses', auxiliary: (target && target.data) ? target.data.documentation : null }
 }

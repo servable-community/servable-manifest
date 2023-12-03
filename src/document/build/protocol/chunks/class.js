@@ -16,5 +16,9 @@ export default async props => {
     }
   }
 
-  return { payload, name: 'Protocol class', id: 'class' }
+  return {
+    payload, name: 'Protocol class',
+    id: 'class',
+    auxiliary: (target && target.data) ? target.data.documentation : null
+  }
 }
