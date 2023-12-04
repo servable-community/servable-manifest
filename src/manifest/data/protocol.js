@@ -51,9 +51,9 @@ export default {
                       path: 'icon',
                       variants: ['@2x', '@3x'],
                       params: {
-                        quality: 90,
-                        maxWidth: 60,
-                        maxHeight: 60,
+                        quality: 100,
+                        maxWidth: 100,
+                        maxHeight: 100,
                       },
                     }
                   ]

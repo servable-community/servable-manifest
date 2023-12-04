@@ -27,9 +27,10 @@ export default async props => {
   if (index && index.data && index.data.module) {
     const { name, description, id, version } = index.data.module
     payload.push({ h1: name })
-    payload.push({ h2: `Unique id: ${id}` })
+    payload.push({ p: `Unique id: ${id}` })
     payload.push({ p: `Version: ${version}` })
     payload.push({ p: description })
+    payload.push({ p: '' })
   }
 
   let icon = await access({
@@ -65,7 +66,7 @@ export default async props => {
       })
     }
   }
-
+  payload.push({ p: '' })
   const chunks = {}
 
   chunks.seed = await buildSeed({ path })
