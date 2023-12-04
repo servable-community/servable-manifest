@@ -35,23 +35,23 @@ export default async props => {
 
   chunks.class = await buildClass({ path })
   payload.push({ h2: chunks.class.name })
-  payload.concat(chunks.class.payload)
+  payload = payload.concat(chunks.class.payload)
 
   chunks.seed = await buildSeed({ path })
   payload.push({ h2: chunks.seed.name })
-  payload.concat(chunks.seed.payload)
+  payload = payload.concat(chunks.seed.payload)
 
   chunks.functions = await buildFunctions({ path })
   payload.push({ h2: chunks.functions.name })
-  payload.concat(chunks.functions.payload)
+  payload = payload.concat(chunks.functions.payload)
 
   chunks.lib = await buildLib({ path })
   payload.push({ h2: chunks.lib.name })
-  payload.concat(chunks.lib.payload)
+  payload = payload.concat(chunks.lib.payload)
 
   chunks.triggers = await buildTriggers({ path })
   payload.push({ h2: chunks.triggers.name })
-  payload.concat(chunks.triggers.payload)
+  payload = payload.concat(chunks.triggers.payload)
 
   payload = payload.filter(a => a)
 

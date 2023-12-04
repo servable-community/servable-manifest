@@ -50,6 +50,11 @@ export default {
                       mimeTypes: ['image/svg+xml', 'image/png', 'image/jpeg', 'image/gif', 'image/webp'],
                       path: 'icon',
                       variants: ['@2x', '@3x'],
+                      params: {
+                        quality: 90,
+                        maxWidth: 60,
+                        maxHeight: 60,
+                      },
                     }
                   ]
                 },

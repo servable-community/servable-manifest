@@ -11,7 +11,8 @@ export default async (props) => {
   const {
     mimeType,
     fullPath,
-    variants
+    variants,
+    params
   } = props
 
   const extensionType = mime.getExtension(mimeType)
@@ -36,7 +37,9 @@ export default async (props) => {
     case 'image/webp': {
       moduleImporter = async ({ path }) => imageToBase64({
         path,
-        mimeType
+        mimeType,
+        maxWidth: params.maxWidth,
+        maxHeight: params.maxHeight
       })
       break
     }

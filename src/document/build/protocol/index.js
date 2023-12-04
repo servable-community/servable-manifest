@@ -39,7 +39,9 @@ export default async props => {
     extraction,
     path
   })
-  if (icon && icon.data && icon.data.module) {
+
+  // if (icon && icon.data && icon.data.module) {
+  if (false) {
     payload.push({
       p: icon.data.module,
     })
@@ -56,8 +58,9 @@ export default async props => {
       payload.push({
         img: {
           title: 'icon',
-          source: icon.data.module.base64,
-          alt: 'icon'
+          source: `${icon.data.module.base64}`,
+          alt: 'icon',
+          style: { width: "20px" }
         }
       })
     }

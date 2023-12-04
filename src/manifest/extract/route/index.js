@@ -9,7 +9,8 @@ export default async (props) => {
   const { item, route, parentLeafPath } = props
   const { type,
     mimeTypes,
-    variants = ['']
+    variants = [''],
+    params = {}
   }
     = route
 
@@ -72,7 +73,8 @@ export default async (props) => {
           const _files = await extractFiles({
             mimeType,
             fullPath,
-            variants: _variants
+            variants: _variants,
+            params
           })
           if (_files && _files.length) {
             if (!files) {
