@@ -17,7 +17,11 @@ export default async (props) => {
   const extensionType = mime.getExtension(mimeType)
 
   let documentation = null
-  const md = `/${sanitizePath(`${props.fullPath}.md`)}`
+  let md = `/${sanitizePath(`${props.fullPath}.md`)}`
+  if (!(await checkFileExists(md))) {
+    md = `/${sanitizePath(`${props.fullPath}.mdx`)}`
+  }
+
   if (await checkFileExists(md)) {
     documentation = await fs.promises.readFile(md, 'utf8')
   }
