@@ -43,8 +43,16 @@ export default async (props) => {
     default:
     case 'text/markdown':
     case 'text/yaml':
+      {
+        moduleImporter = async ({ path }) => fse.readFile(path, 'utf8')
+        break
+      }
     case 'image/svg+xml': {
-      moduleImporter = async ({ path }) => fse.readFile(path, 'utf8')
+      moduleImporter = async ({ path }) => {
+        let data = await fse.readFile(path, 'utf8')
+        data = data.replace(/(\r\n|\n|\r)/gm, "")
+        return data
+      }
       break
     }
     case 'text/javascript': {

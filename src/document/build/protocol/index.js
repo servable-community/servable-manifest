@@ -27,65 +27,87 @@ export default async props => {
   if (index && index.data && index.data.module) {
     const { name, description, id, version } = index.data.module
     payload.push({ h1: name })
-    payload.push({ h2: `#${id}` })
-    payload.push({ p: `#${version}` })
+    payload.push({ h2: `Unique id: ${id}` })
+    payload.push({ p: `Version: ${version}` })
     payload.push({ p: description })
-    payload.push({ hr: "" })
   }
 
   let icon = await access({
     item: ProtocolEnum.Assets.Icon,
-    variant: ProtocolEnum.Assets.Icon.variants.x2,
-    mimeType: ProtocolEnum.Assets.Icon.mimeTypes.PNG,
+    // variant: ProtocolEnum.Assets.Icon.variants.x2,
+    mimeType: ProtocolEnum.Assets.Icon.mimeTypes.SVG,
     extraction,
     path
   })
+  if (icon && icon.data && icon.data.module) {
+    payload.push({
+      p: icon.data.module,
+    })
+  }
+  else {
+    icon = await access({
+      item: ProtocolEnum.Assets.Icon,
+      variant: ProtocolEnum.Assets.Icon.variants.x2,
+      mimeType: ProtocolEnum.Assets.Icon.mimeTypes.PNG,
+      extraction,
+      path
+    })
+    if (icon && icon.data && icon.data.module && icon.data.module.base64) {
+      payload.push({
+        img: {
+          title: 'icon',
+          source: icon.data.module.base64,
+          alt: 'icon'
+        }
+      })
+    }
+  }
 
   const chunks = {}
 
   chunks.seed = await buildSeed({ path })
   payload.push({ h2: chunks.seed.name })
-  payload.concat(chunks.seed.payload)
+  payload = payload.concat(chunks.seed.payload)
 
   chunks.protocolClass = await buildProtocolClass({ path })
   payload.push({ h2: chunks.protocolClass.name })
-  payload.concat(chunks.protocolClass.payload)
+  payload = payload.concat(chunks.protocolClass.payload)
 
   chunks.beforeInit = await buildBeforeInit({ path })
   payload.push({ h2: chunks.beforeInit.name })
-  payload.concat(chunks.beforeInit.payload)
+  payload = payload.concat(chunks.beforeInit.payload)
 
   chunks.afterInit = await buildAfterInit({ path })
   payload.push({ h2: chunks.afterInit.name })
-  payload.concat(chunks.afterInit.payload)
+  payload = payload.concat(chunks.afterInit.payload)
 
   chunks.config = await buildConfig({ path })
   payload.push({ h2: chunks.config.name })
-  payload.concat(chunks.config.payload)
+  payload = payload.concat(chunks.config.payload)
 
   chunks.functions = await buildFunctions({ path })
   payload.push({ h2: chunks.functions.name })
-  payload.concat(chunks.functions.payload)
+  payload = payload.concat(chunks.functions.payload)
 
   chunks.liveClasses = await buildLiveClasses({ path })
   payload.push({ h2: chunks.liveClasses.name })
-  payload.concat(chunks.liveClasses.payload)
+  payload = payload.concat(chunks.liveClasses.payload)
 
   chunks.schema = await buildSchema({ path })
   payload.push({ h2: chunks.schema.name })
-  payload.concat(chunks.schema.payload)
+  payload = payload.concat(chunks.schema.payload)
 
   chunks.system = await buildSystem({ path })
   payload.push({ h2: chunks.system.name })
-  payload.concat(chunks.system.payload)
+  payload = payload.concat(chunks.system.payload)
 
   chunks.lib = await buildLib({ path })
   payload.push({ h2: chunks.lib.name })
-  payload.concat(chunks.lib.payload)
+  payload = payload.concat(chunks.lib.payload)
 
   chunks.triggers = await buildTriggers({ path })
   payload.push({ h2: chunks.triggers.name })
-  payload.concat(chunks.triggers.payload)
+  payload = payload.concat(chunks.triggers.payload)
 
   payload = payload.filter(a => a)
 

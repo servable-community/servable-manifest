@@ -13,6 +13,24 @@ export default async props => {
   if (target && target.data) {
     const { astAdapted } = target.data
     if (astAdapted) {
+      const { description, params = [], } = astAdapted
+      const rows = []
+
+      payload.push({
+        p: description
+      })
+      params.forEach(param => {
+        const { title, name, description: paramDescription, type } = param
+        rows.push([name ? name : "", description ? description : "", type.name ? type.name : ""])
+      })
+      if (rows && rows.length) {
+        payload.push({
+          table: {
+            headers: ["Name", "Description", "Type"],
+            rows
+          }
+        })
+      }
     }
   }
 
