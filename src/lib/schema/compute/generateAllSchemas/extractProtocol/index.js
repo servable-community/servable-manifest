@@ -1,6 +1,6 @@
 import handleClassFields from './handleClassFields/index.js'
 import _ from 'underscore'
-import Bluebird from "bluebird"
+
 import adaptAppClasses from './adaptAppClasses/index.js'
 
 const perform = async (props) => {
@@ -15,10 +15,11 @@ const perform = async (props) => {
   const _default = [
     protocol
   ]
-
+  // console.log('extractProtocol', protocol.id)
   try {
 
     if (!(await protocol.loader.isValid())) {
+      console.log('protocol not valid', protocol.id, protocol.loader.path)
       return _default
     }
 
@@ -38,6 +39,7 @@ const perform = async (props) => {
         protocolsPayloadLibrary,
       })))
 
+
     await updateProtocolsExcerpt({ adaptedClassesStructs })
     let ownClasses = adaptedClassesStructs.map(i => i.item)
     let protocolsPayloads = adaptedClassesStructs.map(i => i.protocols)
@@ -47,6 +49,13 @@ const perform = async (props) => {
     protocolsPayloads = protocolsPayloads.filter(a => (a && a.id !== protocol.id))
     //#TODO Move from uniq to cleanprotocols
     protocolsPayloads = _.uniq(protocolsPayloads, a => a.id)
+
+    // console.log('protocolsPayloads', protocolsPayloads,
+    //   'ownClasses', ownClasses,
+    //   'jsClasses', jsClasses,
+    //   'classes', classes,
+    //   'adaptedClassesStructs', adaptedClassesStructs
+    // )
 
     if (!protocolsPayloads || !protocolsPayloads.length) {
       protocol.schema = {
@@ -60,6 +69,7 @@ const perform = async (props) => {
       return [protocol]
     }
 
+    const Bluebird = (await import("bluebird")).default
     let classesProtocols = await Bluebird.Promise.mapSeries(
       protocolsPayloads,
       async protocolPayload => {
@@ -84,6 +94,7 @@ const perform = async (props) => {
     classesProtocols = _.flatten(_.flatten(classesProtocols))
     classesProtocols = _.uniq(classesProtocols, 'id')
     // subProtocols = _.uniq(subProtocols, false, p => p.id)
+    // console.log('classesProtocols', classesProtocols)
 
     let all = [...ownClasses]
     classesProtocols.forEach(element => {
@@ -108,6 +119,7 @@ const perform = async (props) => {
     ]
   }
   catch (e) {
+    console.error('[SERVABLE] extractProtocol', protocol.id, e)
     return _default
   }
 }

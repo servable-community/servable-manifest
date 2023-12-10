@@ -1,4 +1,4 @@
-import checkFileExists from '../../../../launch/utils/checkFileExists.js'
+import checkFileExists from '../../../../utils/checkFileExists.js'
 import absoluteModuleSrcPath from './absoluteModuleSrcPath.js'
 
 export default async (props) => {

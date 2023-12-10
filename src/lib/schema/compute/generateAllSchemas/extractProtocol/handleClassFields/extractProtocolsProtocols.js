@@ -1,5 +1,5 @@
 import _ from 'underscore'
-import adaptProtocolPayload from '../../../../../../launch/utils/adaptProtocolPayload.js'
+import adaptProtocolPayload from '../../../../../../utils/adaptProtocolPayload.js'
 import cleanProtocols from '../../../../../../utils/cleanProtocols.js'
 
 

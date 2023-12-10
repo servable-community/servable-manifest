@@ -1,6 +1,5 @@
 import handleProtocolInClass from './handleProtocolInClass.js'
-import Bluebird from "bluebird"
-import adaptProtocolPayload from '../../../../../../launch/utils/adaptProtocolPayload.js'
+import adaptProtocolPayload from '../../../../../../utils/adaptProtocolPayload.js'
 import extractProtocolsProtocols from './extractProtocolsProtocols.js'
 import cleanProtocols from '../../../../../../utils/cleanProtocols.js'
 
@@ -28,6 +27,7 @@ export default async (props) => {
     })
 
     if (!classProtocols || !classProtocols.length) {
+      console.log('noclassProtocols', protocol.id)
       return { item }
     }
 
@@ -42,6 +42,7 @@ export default async (props) => {
 
 
     let _item = { ...item }
+    const Bluebird = (await import("bluebird")).default
     await Bluebird.Promise.mapSeries(protocols,
       async (protocolItem) => {
         const protocol = await protocolsPayloadLibrary(protocolItem)
