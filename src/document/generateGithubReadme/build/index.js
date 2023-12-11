@@ -1,23 +1,24 @@
-import { ProtocolEnum } from "../../../../manifest/enums.js"
+import { ProtocolEnum } from "../../../manifest/enums.js"
 // import append from "../utils/builder/append.js"
-import access from '../../../../manifest/access/index.js'
-import buildSeed from '../../../chunks/build/protocol/seed.js'
-import buildProtocolClass from '../../../chunks/build/protocol/class.js'
-import buildConfig from '../../../chunks/build/protocol/config.js'
-import buildLiveClasses from '../../../chunks/build/protocol/liveClasses.js'
-import buildAfterInit from '../../../chunks/build/protocol/afterInit.js'
-import buildBeforeInit from '../../../chunks/build/protocol/beforeInit.js'
-import buildFunctions from '../../../chunks/build/protocol/functions.js'
-import buildSchema from '../../../chunks/build/protocol/schema.js'
-import buildSystem from '../../../chunks/build/protocol/system.js'
-import buildLib from '../../../chunks/build/protocol/lib.js'
-import buildTriggers from '../../../chunks/build/protocol/triggers.js'
-import documentClass from '../class/index.js'
+import access from '../../../manifest/access/index.js'
+import buildSeed from '../../chunks/build/protocol/seed.js'
+import buildProtocolClass from '../../chunks/build/protocol/class.js'
+import buildConfig from '../../chunks/build/protocol/config.js'
+import buildLiveClasses from '../../chunks/build/protocol/liveClasses.js'
+import buildAfterInit from '../../chunks/build/protocol/afterInit.js'
+import buildBeforeInit from '../../chunks/build/protocol/beforeInit.js'
+import buildFunctions from '../../chunks/build/protocol/functions.js'
+import buildSchema from '../../chunks/build/protocol/schema.js'
+import buildSystem from '../../chunks/build/protocol/system.js'
+import buildLib from '../../chunks/build/protocol/lib.js'
+import buildGithubTags from './chunks/githubTags.js'
+import buildTriggers from '../../chunks/build/protocol/triggers.js'
+
 
 export default async props => {
   const { path, includeChunksInMain = true } = props
   let payload = []
-
+  const chunks = {}
   let extraction = null
   let index = await access({
     item: ProtocolEnum.Index,
@@ -26,11 +27,11 @@ export default async props => {
   })
   if (index && index.data && index.data.module) {
     const { name, description, id, version } = index.data.module
-    payload.push({ h1: name })
+    payload.push({ h1: `${name} protocol` })
     payload.push({ p: `@${id}, #${version}` })
-    payload.push({ p: description })
-    // payload.push({ p: '' })
   }
+
+
 
   let icon = await access({
     item: ProtocolEnum.Assets.Icon,
@@ -65,12 +66,26 @@ export default async props => {
       })
     }
   }
-  payload.push({ p: '' })
-  const chunks = {}
+
+  chunks.githubTags = await buildGithubTags({ path })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.githubTags.payload)
+
+  payload.push({ p: `Generated documentation below` })
+
+  if (index && index.data && index.data.documentation) {
+    payload.push({ p: index.data.documentation })
+    // payload.push({ p: '' })
+  } else if (index && index.data && index.data.module) {
+    payload.push({ p: description })
+  }
+
 
   chunks.seed = await buildSeed({ path })
   payload.push({ h2: chunks.seed.name })
   payload = payload.concat(chunks.seed.payload)
+
+
 
   chunks.protocolClass = await buildProtocolClass({ path })
   payload.push({ h2: chunks.protocolClass.name })
@@ -116,20 +131,9 @@ export default async props => {
 
 
 
-  let classes = null
-  const _classes = await access({
-    item: ProtocolEnum.Classes,
-    path
-  })
-  if (_classes && _classes.children) {
-    classes = await Promise.all(_classes.children.map(async _class => documentClass({
-      path: _class.fullPath
-    })))
-  }
 
   return {
     payload,
     chunks,
-    classes
   }
 }

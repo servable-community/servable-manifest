@@ -1,11 +1,11 @@
 import { ClassEnum, DataTemplateType } from "../../../../manifest/enums.js"
 // import append from "../utils/builder/append.js"
 import access from '../../../../manifest/access/index.js'
-import buildSeed from './chunks/seed.js'
-import buildClass from './chunks/class.js'
-import buildFunctions from './chunks/functions.js'
-import buildLib from './chunks/lib.js'
-import buildTriggers from './chunks/triggers.js'
+import buildSeed from '../../../chunks/build/class/seed.js'
+import buildClass from '../../../chunks/build/class/class.js'
+import buildFunctions from '../../../chunks/build/class/functions.js'
+import buildLib from '../../../chunks/build/class/lib.js'
+import buildTriggers from '../../../chunks/build/class/triggers.js'
 
 export default async props => {
   const { path, includeChunksInMain = true } = props

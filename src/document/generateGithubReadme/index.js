@@ -1,16 +1,27 @@
-import buildProtocol from './build/protocol/index.js'
-import writeProtocol from './write/protocol/index.js'
-
+import build from './build/index.js'
+import json2md from 'json2md'
+import fse from 'fs-extra'
 
 export default async props => {
-  const { path, write = false, includeAuxiliary = true, print = false } = props
-  const item = await buildProtocol({ path })
+  const {
+    path,
+    targetPath,
+    write = true,
+    includeAuxiliary = true,
+    print = false } = props
+
+  const item = await build({ path })
   if (print) {
     console.log(item)
   }
 
-  if (write) {
-    const written = await writeProtocol({ item, path, includeAuxiliary })
+  const {
+    payload,
+  } = item
+
+  if (write && targetPath) {
+    const text = json2md(payload)
+    await fse.outputFile(targetPath, text)
   }
 
   return item
