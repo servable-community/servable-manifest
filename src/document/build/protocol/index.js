@@ -27,10 +27,9 @@ export default async props => {
   if (index && index.data && index.data.module) {
     const { name, description, id, version } = index.data.module
     payload.push({ h1: name })
-    payload.push({ p: `Unique id: ${id}` })
-    payload.push({ p: `Version: ${version}` })
+    payload.push({ p: `@${id}, #${version}` })
     payload.push({ p: description })
-    payload.push({ p: '' })
+    // payload.push({ p: '' })
   }
 
   let icon = await access({
