@@ -78,7 +78,6 @@
     "inspirational-quotes": "^2.0.1",
     "json2md": "^2.0.0",
     "mime": "^4.0.0",
-    "parse": "^3.5.1",
     "parse-comments": "^1.0.0",
     "path-sanitizer": "^2.0.0",
     "semver": "^7.5.4",

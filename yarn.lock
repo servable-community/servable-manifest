@@ -284,21 +284,6 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
 
-"@babel/runtime-corejs3@7.17.8":
-  version "7.17.8"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.17.8.tgz#d7dd49fb812f29c61c59126da3792d8740d4e284"
-  integrity sha512-ZbYSUvoSF6dXZmMl/CYTMOvzIFnbGfv4W3SEHYgMvNsFTeLaF2gkGAF4K2ddmtSK4Emej+0aYcnSC6N5dPCXUQ==
-  dependencies:
-    core-js-pure "^3.20.2"
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@7.18.0":
-  version "7.18.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.0.tgz#6d77142a19cb6088f0af662af1ada37a604d34ae"
-  integrity sha512-YMQvx/6nKEaucl0MY56mwIG483xk8SDNdlUwb2Ts6FUpr7fm85DxEmsY18LXBNhcTz6tO6JwZV8w1W06v8UKeg==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
 "@babel/template@^7.22.15", "@babel/template@^7.22.5", "@babel/template@^7.3.3":
   version "7.22.15"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.22.15.tgz#09576efc3830f0430f4548ef971dde1350ef2f38"
@@ -2968,11 +2953,6 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.npmjs.org/copy-descriptor/-/copy-descriptor-0.1.1.tgz"
   integrity sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==
 
-core-js-pure@^3.20.2:
-  version "3.34.0"
-  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.34.0.tgz#981e462500708664c91b827a75b011f04a8134a0"
-  integrity sha512-pmhivkYXkymswFfbXsANmBAewXx86UBfmagP+w0wkK06kLsLlTK5oQmsURPivzMkIBQiYq2cjamcZExIwlFQIg==
-
 core-util-is@~1.0.0:
   version "1.0.3"
   resolved "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz"
@@ -3078,11 +3058,6 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
-
-crypto-js@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
-  integrity sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==
 
 crypto-random-string@^4.0.0:
   version "4.0.0"
@@ -4934,13 +4909,6 @@ icss-utils@^5.0.0, icss-utils@^5.1.0:
   version "5.1.0"
   resolved "https://registry.npmjs.org/icss-utils/-/icss-utils-5.1.0.tgz"
   integrity sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==
-
-idb-keyval@6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-6.0.3.tgz#e47246a15e55d0fff9fa204fd9ca06f90ff30c52"
-  integrity sha512-yh8V7CnE6EQMu9YDwQXhRxwZh4nv+8xm/HV4ZqK4IiYFJBWYGjJuykADJbSP+F/GDXUBwCSSNn/14IpGL81TuA==
-  dependencies:
-    safari-14-idb-fix "^3.0.0"
 
 ieee754@^1.1.13, ieee754@^1.1.4, ieee754@^1.2.1:
   version "1.2.1"
@@ -7757,21 +7725,6 @@ parse-passwd@^1.0.0:
   resolved "https://registry.npmjs.org/parse-passwd/-/parse-passwd-1.0.0.tgz"
   integrity sha512-1Y1A//QUXEZK7YKz+rD9WydcE1+EuPr6ZBgKecAB8tmoW6UFv0NREVJe1p+jRxtThkcbbKkfwIbWJe/IeE6m2Q==
 
-parse@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/parse/-/parse-3.5.1.tgz#16c1d5ff9d541a500000b2ac1a71e73ab8fba4c0"
-  integrity sha512-uxkLVNfbqgZ/pStg/jIQGh09tOUkPZorzDIqz9vSFjZ3iIZzgvNk6VBbjXjcMWsR8LyFPOR1ROR6/y9Dedn3/w==
-  dependencies:
-    "@babel/runtime" "7.18.0"
-    "@babel/runtime-corejs3" "7.17.8"
-    idb-keyval "6.0.3"
-    react-native-crypto-js "1.0.0"
-    uuid "3.4.0"
-    ws "8.6.0"
-    xmlhttprequest "1.8.0"
-  optionalDependencies:
-    crypto-js "4.1.1"
-
 pascalcase@^0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/pascalcase/-/pascalcase-0.1.1.tgz"
@@ -8399,11 +8352,6 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-native-crypto-js@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-crypto-js/-/react-native-crypto-js-1.0.0.tgz#e677e022e147f41b35614416c92d655f87e2450a"
-  integrity sha512-FNbLuG/HAdapQoybeZSoes1PWdOj0w242gb+e1R0hicf3Gyj/Mf8M9NaED2AnXVOX01b2FXomwUiw1xP1K+8sA==
-
 read-cmd-shim@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/read-cmd-shim/-/read-cmd-shim-4.0.0.tgz"
@@ -8575,11 +8523,6 @@ reflect.getprototypeof@^1.0.4:
     get-intrinsic "^1.2.1"
     globalthis "^1.0.3"
     which-builtin-type "^1.1.3"
-
-regenerator-runtime@^0.13.4:
-  version "0.13.11"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
-  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
 regex-not@^1.0.0, regex-not@^1.0.2:
   version "1.0.2"
@@ -8793,11 +8736,6 @@ rxjs@^7.5.5:
   integrity sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==
   dependencies:
     tslib "^2.1.0"
-
-safari-14-idb-fix@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/safari-14-idb-fix/-/safari-14-idb-fix-3.0.0.tgz#450fc049b996ec7f3fd9ca2f89d32e0761583440"
-  integrity sha512-eBNFLob4PMq8JA1dGyFn6G97q3/WzNtFK4RnzT1fnLq+9RyrGknzYiM/9B12MnKAxuj1IXr7UKYtTNtjyKMBog==
 
 safe-array-concat@^1.0.1:
   version "1.0.1"
@@ -10197,11 +10135,6 @@ util@^0.11.0:
   dependencies:
     inherits "2.0.3"
 
-uuid@3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
-  integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
-
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/v8-compile-cache-lib/-/v8-compile-cache-lib-3.0.1.tgz"
@@ -10489,20 +10422,10 @@ write@1.0.3:
   dependencies:
     mkdirp "^0.5.1"
 
-ws@8.6.0:
-  version "8.6.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.6.0.tgz#e5e9f1d9e7ff88083d0c0dd8281ea662a42c9c23"
-  integrity sha512-AzmM3aH3gk0aX7/rZLYvjdvZooofDu3fFOzGqcSnQ1tOcTWwhM/o+q++E8mAyVVIyUdajrkzWUGftaVSDLn1bw==
-
 ws@^7.3.1:
   version "7.5.9"
   resolved "https://registry.npmjs.org/ws/-/ws-7.5.9.tgz"
   integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
-
-xmlhttprequest@1.8.0:
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
-  integrity sha512-58Im/U0mlVBLM38NdZjHyhuMtCqa61469k2YP/AaPbvCoV9aQGUpbJBj1QRm2ytRiVQBD/fsw7L2bJGDVQswBA==
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
