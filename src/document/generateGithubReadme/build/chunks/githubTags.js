@@ -31,33 +31,11 @@ export default async props => {
   }
 
   payload.push({
-    p: `> [!WARNING]\n> Servable is still experimental and its api may change in the future.
+    p: `> [!WARNING] \> Servable is still experimental and its api may change in the future.
   ` })
 
   payload.push({
-    img: {
-      title: 'icon',
-      source: `/static/img/polar-bear-4.png`,
-      alt: 'icon',
-    }
-  })
-
-  // payload.push({
-  //   img: {
-  //     title: 'icon',
-  //     source: `https://img.shields.io/npm/v/${packageName}.svg?style=flat-square`,
-  //     alt: 'icon',
-  //     style: { width: "20px" }
-  //   }
-  // })
-
-  payload.push({
-    p: `
-[![npm Package](https://img.shields.io/npm/v/${npmPackageName}.svg?style=flat-square)](https://www.npmjs.org/package/${npmPackageName})
-[![NPM Downloads](https://img.shields.io/npm/dm/${npmPackageName}.svg)](https://npmjs.org/package/${npmPackageName})
-[![Build Status](https://github.com/${githubPackageName}/actions/workflows/release.yml/badge.svg)](https://github.com/${githubPackageName}/actions/tests.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+    p: `[![npm Package](https://img.shields.io/npm/v/${npmPackageName}.svg?style=flat-square)](https://www.npmjs.org/package/${npmPackageName}) [![NPM Downloads](https://img.shields.io/npm/dm/${npmPackageName}.svg)](https://npmjs.org/package/${npmPackageName}) [![Build Status](https://github.com/${githubPackageName}/actions/workflows/release.yml/badge.svg)](https://github.com/${githubPackageName}/actions/tests.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 `
   })
 

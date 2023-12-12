@@ -2,6 +2,9 @@ export const ProtocolEnum = {
   Index: {
     id: 'index'
   },
+  Packages: {
+    id: 'packages'
+  },
   Assets: {
     id: 'assets',
     Icon: {

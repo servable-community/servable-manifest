@@ -12,6 +12,9 @@ import buildSchema from '../../chunks/build/protocol/schema.js'
 import buildSystem from '../../chunks/build/protocol/system.js'
 import buildLib from '../../chunks/build/protocol/lib.js'
 import buildGithubTags from './chunks/githubTags.js'
+import buildRegistry from './chunks/registry.js'
+import buildInstall from './chunks/install.js'
+import buildUsage from './chunks/usage.js'
 import buildTriggers from '../../chunks/build/protocol/triggers.js'
 
 
@@ -20,18 +23,27 @@ export default async props => {
   let payload = []
   const chunks = {}
   let extraction = null
+  let githubPackageName = null
+  let npmPackageName = null
+  let mainPackage = null
+
   let index = await access({
     item: ProtocolEnum.Index,
     extraction,
     path
   })
+
   if (index && index.data && index.data.module) {
-    const { name, description, id, version } = index.data.module
+    const { packages } = index.data.module
+    mainPackage = packages.filter(a => a.type === 'main')[0]
+    const { name, description, id, version, } = mainPackage
+
     payload.push({ h1: `${name} protocol` })
-    payload.push({ p: `@${id}, #${version}` })
+    payload.push({ p: `${id}, #${version}` })
+
+    githubPackageName = mainPackage.github.id
+    npmPackageName = id
   }
-
-
 
   let icon = await access({
     item: ProtocolEnum.Assets.Icon,
@@ -42,9 +54,11 @@ export default async props => {
   })
 
   // if (icon && icon.data && icon.data.module) {
-  if (false) {
+  if (icon.data.module) {
+    const data = icon.data.module.replace('<svg ', '<svg width="100px" height="100px" ')
     payload.push({
-      p: icon.data.module,
+      // p: icon.data.module,
+      p: data
     })
   }
   else {
@@ -67,11 +81,17 @@ export default async props => {
     }
   }
 
-  chunks.githubTags = await buildGithubTags({ path })
+  chunks.githubTags = await buildGithubTags({ path, npmPackageName, githubPackageName })
   // payload.push({ h2: chunks.githubTags.name })
   payload = payload.concat(chunks.githubTags.payload)
 
-  payload.push({ p: `Generated documentation below` })
+
+  chunks.registry = await buildRegistry({ path, mainPackage, index })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.registry.payload)
+
+
+
 
   if (index && index.data && index.data.documentation) {
     payload.push({ p: index.data.documentation })
@@ -80,6 +100,16 @@ export default async props => {
     payload.push({ p: description })
   }
 
+  chunks.install = await buildInstall({ path, npmPackageName, githubPackageName })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.install.payload)
+
+  chunks.usage = await buildUsage({ path, mainPackage, index })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.usage.payload)
+
+  payload.push({ hr: `` })
+  payload.push({ p: `*Generated documentation below*` })
 
   chunks.seed = await buildSeed({ path })
   payload.push({ h2: chunks.seed.name })

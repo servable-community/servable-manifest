@@ -26,6 +26,18 @@ export default {
           ]
         },
         {
+          id: 'packages',
+          name: 'Packages',
+          description: 'Packages',
+          routes: [
+            {
+              type: 'file',
+              path: 'packages',
+              mimeTypes: ['application/json']
+            }
+          ]
+        },
+        {
           id: 'README',
           routes: [
             {
