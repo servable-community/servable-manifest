@@ -41,8 +41,12 @@ export default async props => {
     payload.push({ h1: `${name} protocol` })
     payload.push({ p: `${id}, #${version}` })
 
-    githubPackageName = mainPackage.github.id
     npmPackageName = id
+    if (mainPackage.github && mainPackage.github.id) {
+      githubPackageName = mainPackage.github.id
+    } else if (npmPackageName) {
+      githubPackageName = npmPackageName.replace('@')
+    }
   }
 
   let icon = await access({
@@ -54,7 +58,7 @@ export default async props => {
   })
 
   // if (icon && icon.data && icon.data.module) {
-  if (icon.data.module) {
+  if (icon && icon.data && icon.data.module) {
     const data = icon.data.module.replace('<svg ', '<svg width="100px" height="100px" ')
     payload.push({
       // p: icon.data.module,
