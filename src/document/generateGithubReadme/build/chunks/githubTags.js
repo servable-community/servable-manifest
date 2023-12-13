@@ -14,7 +14,6 @@ export default async props => {
   })
 
   if (index && index.data && index.data.module) {
-    const { name, description, id, version } = index.data.module
     githubPackageName = 'servable-community/publishable'
     npmPackageName = `@${githubPackageName}`
   }
@@ -30,9 +29,9 @@ export default async props => {
     }
   }
 
-  payload.push({
-    p: `> [!WARNING] \> Servable is still experimental and its api may change in the future.
-  ` })
+  // payload.push({
+  //   p: `> [!WARNING] \> Servable is still experimental and its api may change in the future.
+  // ` })
 
   payload.push({
     p: `[![npm Package](https://img.shields.io/npm/v/${npmPackageName}.svg?style=flat-square)](https://www.npmjs.org/package/${npmPackageName}) [![NPM Downloads](https://img.shields.io/npm/dm/${npmPackageName}.svg)](https://npmjs.org/package/${npmPackageName}) [![Build Status](https://github.com/${githubPackageName}/actions/workflows/release.yml/badge.svg)](https://github.com/${githubPackageName}/actions/tests.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)

@@ -15,8 +15,11 @@ import buildGithubTags from './chunks/githubTags.js'
 import buildRegistry from './chunks/registry.js'
 import buildInstall from './chunks/install.js'
 import buildUsage from './chunks/usage.js'
+import buildFooter from './chunks/footer.js'
+import buildPackages from './chunks/packages.js'
+import buildDependencies from './chunks/dependencies/index.js'
 import buildTriggers from '../../chunks/build/protocol/triggers.js'
-
+import gitUrlParse from "git-url-parse"
 
 export default async props => {
   const { path, includeChunksInMain = true } = props
@@ -26,7 +29,7 @@ export default async props => {
   let githubPackageName = null
   let npmPackageName = null
   let mainPackage = null
-
+  let packages
   let index = await access({
     item: ProtocolEnum.Index,
     extraction,
@@ -34,20 +37,27 @@ export default async props => {
   })
 
   if (index && index.data && index.data.module) {
-    const { packages } = index.data.module
+    packages = index.data.module.packages
     mainPackage = packages.filter(a => a.type === 'main')[0]
     const { name, description, id, version, } = mainPackage
 
-    payload.push({ h1: `${name} protocol` })
+    payload.push({ h1: `${name} *protocol for Servable*` })
     payload.push({ p: `${id}, #${version}` })
 
     npmPackageName = id
-    if (mainPackage.github && mainPackage.github.id) {
-      githubPackageName = mainPackage.github.id
+    if (mainPackage.repository) {
+      const { owner, name: _packageName } = gitUrlParse(mainPackage.repository.url)
+      githubPackageName = `${owner}/${_packageName}`
     } else if (npmPackageName) {
       githubPackageName = npmPackageName.replace('@')
     }
   }
+
+
+
+  chunks.githubTags = await buildGithubTags({ path, npmPackageName, githubPackageName })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.githubTags.payload)
 
   let icon = await access({
     item: ProtocolEnum.Assets.Icon,
@@ -57,8 +67,10 @@ export default async props => {
     path
   })
 
+
   // if (icon && icon.data && icon.data.module) {
-  if (icon && icon.data && icon.data.module) {
+  // Github does not displaya svg
+  if (false) {
     const data = icon.data.module.replace('<svg ', '<svg width="100px" height="100px" ')
     payload.push({
       // p: icon.data.module,
@@ -74,25 +86,35 @@ export default async props => {
       path
     })
     if (icon && icon.data && icon.data.module && icon.data.module.base64) {
+      // Github does not displaya svg
+      // payload.push({
+      //   img: {
+      //     title: 'icon',
+      //     source: `${icon.data.module.base64}`,
+      //     alt: 'icon',
+      //     style: { width: "20px" }
+      //   }
+      // })
+      // Can't resize
+      // payload.push({
+      //   img: {
+      //     title: 'icon',
+      //     source: `src/assets/icon.png`,
+      //     alt: 'icon',
+      //     style: { width: "20px" }
+      //   }
+      // })
       payload.push({
-        img: {
-          title: 'icon',
-          source: `${icon.data.module.base64}`,
-          alt: 'icon',
-          style: { width: "20px" }
-        }
+        p: '<img src="src/assets/icon.png" alt="drawing" style="width:80px;" />'
+      })
+      payload.push({
+        p: '\n'
       })
     }
   }
 
-  chunks.githubTags = await buildGithubTags({ path, npmPackageName, githubPackageName })
-  // payload.push({ h2: chunks.githubTags.name })
-  payload = payload.concat(chunks.githubTags.payload)
 
 
-  chunks.registry = await buildRegistry({ path, mainPackage, index })
-  // payload.push({ h2: chunks.githubTags.name })
-  payload = payload.concat(chunks.registry.payload)
 
 
 
@@ -104,9 +126,23 @@ export default async props => {
     payload.push({ p: description })
   }
 
+  chunks.registry = await buildRegistry({ path, mainPackage, index })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.registry.payload)
+
+
   chunks.install = await buildInstall({ path, npmPackageName, githubPackageName })
   // payload.push({ h2: chunks.githubTags.name })
   payload = payload.concat(chunks.install.payload)
+
+
+  chunks.packages = await buildPackages({ packages })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.packages.payload)
+
+  chunks.dependencies = await buildDependencies({ dependencies: mainPackage.dependencies })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.dependencies.payload)
 
   chunks.usage = await buildUsage({ path, mainPackage, index })
   // payload.push({ h2: chunks.githubTags.name })
@@ -160,6 +196,9 @@ export default async props => {
   chunks.triggers = await buildTriggers({ path })
   payload.push({ h2: chunks.triggers.name })
   payload = payload.concat(chunks.triggers.payload)
+
+  chunks.footer = await buildFooter({ path })
+  payload = payload.concat(chunks.footer.payload)
 
   payload = payload.filter(a => a)
 

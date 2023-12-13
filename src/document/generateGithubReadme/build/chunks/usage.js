@@ -18,9 +18,13 @@ export default async props => {
   })
 
   payload.push({
+    p: "Add this template to your class' protocols.json file. Fill the values to fit your needs with the right parameters."
+  })
+
+  payload.push({
     code: {
       "language": "json",
-      "content": JSON.stringify(template)
+      "content": JSON.stringify(template, null, 2)
     }
   })
 

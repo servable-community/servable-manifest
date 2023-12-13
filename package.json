@@ -75,6 +75,7 @@
     "bluebird": "^3.7.2",
     "fs-extra": "^11.2.0",
     "fse": "^4.0.1",
+    "git-url-parse": "^13.1.1",
     "inspirational-quotes": "^2.0.1",
     "json2md": "^2.0.0",
     "mime": "^4.0.0",
