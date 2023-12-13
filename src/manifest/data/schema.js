@@ -41,7 +41,7 @@ export default {
           routes: [
             {
               type: 'file',
-              path: 'classLevelPermission',
+              path: 'classlevelpermission',
               mimeTypes: ['application/json'],
               priority: 0,
             }

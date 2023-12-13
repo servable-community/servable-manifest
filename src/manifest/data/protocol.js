@@ -251,7 +251,7 @@ export default {
                             {
                               type: 'file',
                               mimeTypes: ['text/javascript'],
-                              path: 'adaptPayload',
+                              path: 'adaptpayload',
                             }
                           ]
                         }
@@ -292,7 +292,7 @@ export default {
           routes: [
             {
               type: 'file',
-              path: 'liveClasses',
+              path: 'liveclasses',
               mimeTypes: ['text/javascript'],
             },
           ]
@@ -357,7 +357,7 @@ export default {
                     {
                       type: 'file',
                       mimeTypes: ['text/javascript'],
-                      path: 'beforeSave',
+                      path: 'beforesave',
                     }
                   ]
                 },
@@ -367,7 +367,7 @@ export default {
                     {
                       type: 'file',
                       mimeTypes: ['text/javascript'],
-                      path: 'afterSave',
+                      path: 'aftersave',
                     }
                   ]
                 },
@@ -377,7 +377,7 @@ export default {
                     {
                       type: 'file',
                       mimeTypes: ['text/javascript'],
-                      path: 'beforeFind',
+                      path: 'beforefind',
                     }
                   ]
                 },
@@ -387,7 +387,7 @@ export default {
                     {
                       type: 'file',
                       mimeTypes: ['text/javascript'],
-                      path: 'afterFind',
+                      path: 'afterfind',
                     }
                   ]
                 },
@@ -397,7 +397,7 @@ export default {
                     {
                       type: 'file',
                       mimeTypes: ['text/javascript'],
-                      path: 'beforeDelete',
+                      path: 'beforedelete',
                     }
                   ]
                 },
@@ -407,7 +407,7 @@ export default {
                     {
                       type: 'file',
                       mimeTypes: ['text/javascript'],
-                      path: 'afterDelete',
+                      path: 'afterdelete',
                     }
                   ]
                 }

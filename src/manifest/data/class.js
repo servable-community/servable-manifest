@@ -34,7 +34,7 @@ export default {
               priority: 0,
             },
             {
-              path: 'cloudCode',
+              path: 'cloudcode',
               priority: 1,
               isDeprecated: true
             }
@@ -172,7 +172,7 @@ export default {
                     {
                       type: 'file',
                       mimeTypes: ['text/javascript'],
-                      path: 'beforeSave',
+                      path: 'beforesave',
                     }
                   ]
                 },
@@ -182,7 +182,7 @@ export default {
                     {
                       type: 'file',
                       mimeTypes: ['text/javascript'],
-                      path: 'afterSave',
+                      path: 'aftersave',
                     }
                   ]
                 }
