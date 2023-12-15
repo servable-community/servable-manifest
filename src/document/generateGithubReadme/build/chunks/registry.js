@@ -4,7 +4,7 @@ export default async props => {
   const payload = []
 
 
-  if (!index.data.module || !index.data.module.registry) {
+  if (!index.data || !index.data.module || !index.data.module.registry) {
     return { payload, name: 'Registry', id: 'registry', }
   }
 

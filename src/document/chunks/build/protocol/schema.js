@@ -2,7 +2,7 @@ import { ProtocolEnum } from "../../../../manifest/enums.js"
 import access from '../../../../manifest/access/index.js'
 
 export default async props => {
-  const { path, extraction } = props
+  const { path, extraction, version } = props
   const payload = []
 
   const target = await access({
@@ -15,6 +15,7 @@ export default async props => {
     return { payload, name: 'Schema', id: 'schema', }
   }
 
+  //TODO: version
   const schema = target.children[0]
 
   if (!schema.children || !schema.children.length) {

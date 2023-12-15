@@ -5,6 +5,9 @@ export const ProtocolEnum = {
   Packages: {
     id: 'packages'
   },
+  License: {
+    id: 'license'
+  },
   Assets: {
     id: 'assets',
     Icon: {

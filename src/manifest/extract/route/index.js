@@ -2,8 +2,8 @@ import checkFileExists from "../../../utils/checkFileExists.js"
 import directoryFilesRecursive from '../../../utils/directoryFilesRecursive.js'
 import formatFile from '../formatFile.js'
 import foldersInFolder from '../../../utils/foldersInFolder.js'
-import sanitizePath from 'path-sanitizer'
 import extractFiles from './extractFiles.js'
+import sanitizePath from '../../../utils/sanitizePath.js'
 
 export default async (props) => {
   const { item, route, parentLeafPath } = props
@@ -11,10 +11,9 @@ export default async (props) => {
     mimeTypes,
     variants = [''],
     params = {}
-  }
-    = route
+  } = route
 
-  let fullPath = `/${sanitizePath(`${parentLeafPath}/${route.path}`)}`
+  let fullPath = `${sanitizePath(`${parentLeafPath}/${route.path}`)}`
   let files = null
   const result = {
     ...route,
@@ -88,7 +87,7 @@ export default async (props) => {
     }
 
 
-    result.leafPath = `/${sanitizePath(result.leafPath)}`
+    result.leafPath = `${sanitizePath(result.leafPath)}`
 
     if (files && files.length) {
       files = files.filter(a => a.module)

@@ -26,6 +26,18 @@ export default {
           ]
         },
         {
+          id: 'license',
+          name: 'License',
+          description: 'License',
+          routes: [
+            {
+              type: 'file',
+              path: 'LICENSE',
+              mimeTypes: ['text/plain']
+            },
+          ]
+        },
+        {
           id: 'functions',
           routes: [
             {

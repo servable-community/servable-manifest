@@ -1,8 +1,6 @@
 import extract from '../extract/index.js'
 import accessChildInTreeWithRoute from './accessChildInTreeWithRoute.js'
-import sanitizePath from 'path-sanitizer'
-
-
+import sanitizePath from '../../utils/sanitizePath.js'
 
 export default async (props) => {
   const {
@@ -16,7 +14,7 @@ export default async (props) => {
   } = props
 
   if (!props.extraction && path) {
-    props.extraction = await extract({ path: `/${sanitizePath(path)}`, dataTemplateType: type })
+    props.extraction = await extract({ path: `${sanitizePath(path)}`, dataTemplateType: type })
   }
 
   if (!props.extraction) {

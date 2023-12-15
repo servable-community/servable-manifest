@@ -23,6 +23,11 @@ export default {
               path: 'manifest',
               mimeTypes: ['application/json']
             },
+            {
+              type: 'file',
+              path: 'module',
+              mimeTypes: ['application/json']
+            },
           ]
         },
         {

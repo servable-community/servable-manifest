@@ -18,9 +18,12 @@ export default async (props) => {
 
   let modulePath = `${path}/manifest.json`
   if (!(await checkFileExists(modulePath))) {
-    modulePath = `${path}/module.json`
+    modulePath = `${path}/index.json`
     if (!(await checkFileExists(modulePath))) {
-      return DEFAULT_LOADER
+      modulePath = `${path}/module.json`
+      if (!(await checkFileExists(modulePath))) {
+        return DEFAULT_LOADER
+      }
     }
   }
 

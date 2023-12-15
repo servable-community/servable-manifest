@@ -30,6 +30,7 @@ export default async props => {
   let npmPackageName = null
   let mainPackage = null
   let packages
+  let version = null
   let index = await access({
     item: ProtocolEnum.Index,
     extraction,
@@ -39,10 +40,10 @@ export default async props => {
   if (index && index.data && index.data.module) {
     packages = index.data.module.packages
     mainPackage = packages.filter(a => a.type === 'main')[0]
-    const { name, description, id, version, } = mainPackage
-
+    const { name, description, id, } = mainPackage
+    version = mainPackage.version
     payload.push({ h1: `${name} *protocol for Servable*` })
-    payload.push({ p: `${id}, #${version}` })
+    payload.push({ p: `**${id}**` })
 
     npmPackageName = id
     if (mainPackage.repository) {
@@ -52,7 +53,6 @@ export default async props => {
       githubPackageName = npmPackageName.replace('@')
     }
   }
-
 
 
   chunks.githubTags = await buildGithubTags({ path, npmPackageName, githubPackageName })
@@ -148,8 +148,8 @@ export default async props => {
   // payload.push({ h2: chunks.githubTags.name })
   payload = payload.concat(chunks.usage.payload)
 
-  payload.push({ hr: `` })
-  payload.push({ p: `*Generated documentation below*` })
+  // payload.push({ hr: `` })
+  // payload.push({ p: `*Generated documentation below*` })
 
   chunks.seed = await buildSeed({ path })
   payload.push({ h2: chunks.seed.name })
@@ -181,7 +181,7 @@ export default async props => {
   payload.push({ h2: chunks.liveClasses.name })
   payload = payload.concat(chunks.liveClasses.payload)
 
-  chunks.schema = await buildSchema({ path })
+  chunks.schema = await buildSchema({ path, version })
   payload.push({ h2: chunks.schema.name })
   payload = payload.concat(chunks.schema.payload)
 

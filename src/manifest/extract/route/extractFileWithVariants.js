@@ -1,5 +1,6 @@
-import sanitizePath from 'path-sanitizer'
+
 import checkFileExists from "../../../utils/checkFileExists.js"
+import sanitizePath from '../../../utils/sanitizePath.js'
 
 export default async (props) => {
   const {
@@ -29,7 +30,7 @@ export default async (props) => {
 
 const fullPathForVariant = ({ variant, fullPath, extensionType }) => {
   if (!variant) {
-    return `/${sanitizePath(`${fullPath}.${extensionType}`)}`
+    return `${sanitizePath(`${fullPath}.${extensionType}`)}`
   }
 
   // return `/${sanitizePath(`${fullPath}${variant.trim()}.${extensionType}`)}`
