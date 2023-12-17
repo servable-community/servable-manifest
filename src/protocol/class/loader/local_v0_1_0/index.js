@@ -64,7 +64,7 @@ export default class ProtocolLoaderLocal extends Base {
     // const path = `${this.path}/classes/${className.toLowerCase()}/class/index.js`
 
     if (!(await checkFileExists(path))) {
-      console.log('class>', className, 'file does not exist', path)
+      //console.log('class>', className, 'file does not exist', path)
       const externalClassesPath = `${this.path}/classes/external`
       if (!(await checkFileExists(externalClassesPath))) {
         return null
@@ -72,19 +72,19 @@ export default class ProtocolLoaderLocal extends Base {
       try {
         const data = (await import(externalClassesPath)).default
         if (!data) {
-          console.log('class>', className, 'data null')
+          //console.log('class>', className, 'data null')
           return null
         }
-        // console.log('class>', className, 'dataff', data)
+        // //console.log('class>', className, 'dataff', data)
         return data[className]
       } catch (e) {
         console.error(e)
         return null
       }
     }
-    // console.log('class>', className, 'file exists')
+    // //console.log('class>', className, 'file exists')
     const dd = await this._importJSDefault({ path, })
-    // console.log('class>', className, 'file exists', dd)
+    // //console.log('class>', className, 'file exists', dd)
     return dd
   }
 
@@ -697,19 +697,19 @@ export default class ProtocolLoaderLocal extends Base {
 
   async classProtocols({ className, withProtocolsProtocols = false }) {
     const cacheKey = 'class'
-    // console.log('classProtocols>', className, 'enter')
+    // //console.log('classProtocols>', className, 'enter')
     if (this._valueInCache(cacheKey)) {
       return this._valueInCache(cacheKey)
     }
     const items = []
     const seedMode = await this.classSeedMode({ className })
-    // console.log('classProtocols>', className, 'seedmode', seedMode)
+    // //console.log('classProtocols>', className, 'seedmode', seedMode)
     if (seedMode === 'auto') {
       items.push({ id: 'servableautoseedable' })
     }
     const _class = await this.getClass({ className })
     if (!_class) {
-      console.log('classProtocols>', className, 'no _class')
+      //console.log('classProtocols>', className, 'no _class')
       return items
     }
 
@@ -719,7 +719,7 @@ export default class ProtocolLoaderLocal extends Base {
     if ((await checkFileExists(path))) {
 
       let _data = (await import(path)).default
-      // console.log('classProtocols>', className, '_data', _data)
+      // //console.log('classProtocols>', className, '_data', _data)
       _data = _data ? _data : []
       data = [...data,
       ..._data]
@@ -728,7 +728,7 @@ export default class ProtocolLoaderLocal extends Base {
     //this.cache[cacheKey] = data
     data = cleanProtocols(data)
     // result = _.uniq(result, a => a.id)
-    // console.log('classProtocols>', className, 'finaldata', data)
+    // //console.log('classProtocols>', className, 'finaldata', data)
     return data
   }
 
