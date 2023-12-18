@@ -1,3 +1,4 @@
+import gitUrlParse from "git-url-parse"
 import { ProtocolEnum } from "../../../manifest/enums.js"
 // import append from "../utils/builder/append.js"
 import access from '../../../manifest/access/index.js'
@@ -19,7 +20,11 @@ import buildFooter from './chunks/footer.js'
 import buildPackages from './chunks/packages.js'
 import buildDependencies from './chunks/dependencies/index.js'
 import buildTriggers from '../../chunks/build/protocol/triggers.js'
-import gitUrlParse from "git-url-parse"
+import buildAdapters from './chunks/adapters.js'
+import buildApis from './chunks/apis.js'
+import buildCategories from './chunks/categories.js'
+
+
 
 export default async props => {
   const { path, includeChunksInMain = true } = props
@@ -116,9 +121,6 @@ export default async props => {
 
 
 
-
-
-
   if (index && index.data && index.data.documentation) {
     payload.push({ p: index.data.documentation })
     // payload.push({ p: '' })
@@ -134,6 +136,18 @@ export default async props => {
   chunks.install = await buildInstall({ path, npmPackageName, githubPackageName })
   // payload.push({ h2: chunks.githubTags.name })
   payload = payload.concat(chunks.install.payload)
+
+  chunks.adapters = await buildAdapters({ mainPackage })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.adapters.payload)
+
+  chunks.apis = await buildApis({ mainPackage })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.apis.payload)
+
+  chunks.categories = await buildCategories({ mainPackage })
+  // payload.push({ h2: chunks.githubTags.name })
+  payload = payload.concat(chunks.categories.payload)
 
 
   chunks.packages = await buildPackages({ packages })
