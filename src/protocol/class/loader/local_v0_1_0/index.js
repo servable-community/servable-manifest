@@ -869,6 +869,21 @@ export default class ProtocolLoaderLocal extends Base {
     return data
   }
 
+  async routes() {
+    const cacheKey = 'routes'
+    if (this._valueInCache(cacheKey)) {
+      return this._valueInCache(cacheKey)
+    }
+
+    let path = `${this.path}/routes`
+    if (!(await checkFileExists(path))) {
+      return null
+    }
+
+    const data = (await directoryFilesRecursive({ path }))
+    return data
+  }
+
   async jobFiles() {
     const cacheKey = 'jobFiles'
     if (this._valueInCache(cacheKey)) {
