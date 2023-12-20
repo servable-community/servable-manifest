@@ -318,6 +318,15 @@ export default {
           ]
         },
         {
+          id: 'routes',
+          routes: [
+            {
+              type: 'filesCollection',
+              path: 'routes'
+            }
+          ]
+        },
+        {
           id: 'lib',
           routes: [
             {

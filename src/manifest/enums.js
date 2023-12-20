@@ -59,6 +59,9 @@ export const ProtocolEnum = {
   Functions: {
     id: 'functions',
   },
+  Routes: {
+    id: 'functions',
+  },
   Lib: {
     id: 'lib',
   },
