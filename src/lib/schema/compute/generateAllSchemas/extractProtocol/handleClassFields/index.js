@@ -27,7 +27,7 @@ export default async (props) => {
     })
 
     if (!classProtocols || !classProtocols.length) {
-      console.log('noclassProtocols', protocol.id)
+      // console.log('noclassProtocols', protocol.id)
       return { item }
     }
 
