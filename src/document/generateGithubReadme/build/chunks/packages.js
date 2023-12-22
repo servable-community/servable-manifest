@@ -5,8 +5,8 @@ export default async props => {
   const payload = []
 
 
-  const otherpackages = packages.filter(a => a.type !== 'main')
-  if (!otherpackages || !otherpackages.length) {
+
+  if (!packages || !packages.length) {
     return { payload, name: 'Packages', id: 'packages', }
   }
 
@@ -14,7 +14,7 @@ export default async props => {
     h3: 'Companion packages'
   })
 
-  otherpackages.forEach(p => {
+  packages.forEach(p => {
     if (!p.repository) {
       return
     }

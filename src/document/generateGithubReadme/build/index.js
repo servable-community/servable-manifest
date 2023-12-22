@@ -44,7 +44,7 @@ export default async props => {
 
   if (index && index.data && index.data.module) {
     packages = index.data.module.packages
-    mainPackage = packages.filter(a => a.type === 'main')[0]
+    mainPackage = index.data.module
     const { name, description, id, } = mainPackage
     version = mainPackage.version
     payload.push({ h1: `${name} *protocol for Servable*` })
