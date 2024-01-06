@@ -161,7 +161,7 @@ export default class ProtocolLoaderLocal extends Base {
       return this._valueInCache(cacheKey)
     }
 
-    const path = `${this.path}/classes/${className.toLowerCase()}/jobs`
+    const path = `${this.path}/classes/${className.toLowerCase()}/jobs_`
     if (!(await checkFileExists(path))) {
       return null
     }
@@ -890,7 +890,7 @@ export default class ProtocolLoaderLocal extends Base {
       return this._valueInCache(cacheKey)
     }
 
-    const path = `${this.path}/jobs`
+    const path = `${this.path}/jobs_`
     if (!(await checkFileExists(path))) {
       return null
     }

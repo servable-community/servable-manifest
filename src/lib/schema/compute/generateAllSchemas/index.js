@@ -14,7 +14,9 @@ export default async (props) => {
 
   const protocols = await extractProtocol({
     protocol,
-    protocolsPayloadLibrary: async protocolPayload => proxyProtocolsLibrary({ ...props, protocolPayload }),
+    protocolsPayloadLibrary: async protocolPayload => {
+      return proxyProtocolsLibrary({ ...props, protocolPayload })
+    },
     // cache,
     updateProtocolsExcerpt: async _props => updateProtocolsExcerpt({ ..._props, protocolsExcerpt })
   })

@@ -7,8 +7,8 @@ export default async ({
   classProtocols,
   protocolsPayloadLibrary }) => {
 
-  const items = await Promise.all(classProtocols.map(async ({ id }) => {
-    const protocol = await protocolsPayloadLibrary({ id })
+  const items = await Promise.all(classProtocols.map(async (_load) => {
+    const protocol = await protocolsPayloadLibrary(_load)
     const ownProtocols = await protocol.loader.ownProtocols()
     return (ownProtocols && ownProtocols.length) ? ownProtocols.map(adaptProtocolPayload) : null
   }))

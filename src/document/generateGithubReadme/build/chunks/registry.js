@@ -15,16 +15,16 @@ export default async props => {
 
   // payload.push({
   //   img: {
-  //     source: 'https://api.cdn.registry.servablecommunity.com/assets/logo.png'
+  //     source: 'https://api.cdn.registry.servable.app/assets/logo.png'
   //   }
   // })
 
   payload.push({
-    p: '<img src="https://cdn.registry.servablecommunity.com/assets/logo.png" alt="drawing" style="width:50px;" />'
+    p: '<img src="https://cdn.registry.servable.app/assets/logo.png" alt="drawing" style="width:50px;" />'
   })
 
   payload.push({
-    p: `${id} is available at [servable registry](https://registry.servablecommunity.com/protocol/${index.data.module.registry.id}).`
+    p: `${id} is available at [servable registry](https://registry.servable.app/protocol/${index.data.module.registry.id}).`
   })
 
   payload.push({
