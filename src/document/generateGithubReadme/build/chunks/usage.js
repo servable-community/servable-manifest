@@ -42,20 +42,18 @@ export default async props => {
   if (parameters && parameters.length) {
     const rows = []
     parameters.forEach(param => {
-      const { id, prompt, } = param
-      const { type, name, message, vacuity, validators } = prompt
+      const { type, name: id, message = "", vacuity, defaultValue = "", validators } = param
       rows.push([
         type,
         id,
-        message ? message : "",
-        prompt.default ? prompt.default : "",
-        vacuity ? vacuity : ""
+        message,
+        defaultValue,
       ])
     })
     if (rows && rows.length) {
       payload.push({
         table: {
-          headers: ["type", "id", "Message", "Default value", "vacuity"],
+          headers: ["type", "id", "Message", "Default value"],
           rows
         }
       })
